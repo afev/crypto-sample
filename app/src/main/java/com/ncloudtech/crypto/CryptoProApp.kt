@@ -3,14 +3,14 @@ package com.ncloudtech.crypto
 import android.app.Application
 import android.util.Log
 import org.apache.xml.security.utils.resolver.ResourceResolver
-import ru.CryptoPro.AdES.AdESConfig
+// import ru.CryptoPro.AdES.AdESConfig
 import ru.CryptoPro.JCPxml.XmlInit
 import ru.CryptoPro.JCPxml.dsig.internal.dom.XMLDSigRI
 import ru.CryptoPro.JCSP.CSPConfig
 import ru.CryptoPro.JCSP.JCSP
 import ru.CryptoPro.JCSP.support.BKSTrustStore
 import ru.CryptoPro.reprov.RevCheck
-import ru.CryptoPro.ssl.android.util.cpSSLConfig
+import ru.CryptoPro.ssl.util.cpSSLConfig
 import ru.cprocsp.ACSP.tools.common.Constants
 import timber.log.Timber
 import java.io.File
@@ -56,22 +56,22 @@ class CryptoProApp : Application() {
 //
         Security.setProperty(
             "ssl.KeyManagerFactory.algorithm",
-            ru.CryptoPro.ssl.android.Provider.KEYMANGER_ALG
+            ru.CryptoPro.ssl.Provider.KEYMANGER_ALG
         )
         Security.setProperty(
             "ssl.TrustManagerFactory.algorithm",
-            ru.CryptoPro.ssl.android.Provider.KEYMANGER_ALG
+            ru.CryptoPro.ssl.Provider.KEYMANGER_ALG
         )
         Security.setProperty(
             "ssl.SocketFactory.provider",
-            "ru.CryptoPro.ssl.android.SSLSocketFactoryImpl"
+            "ru.CryptoPro.ssl.SSLSocketFactoryImpl"
         )
         Security.setProperty(
             "ssl.ServerSocketFactory.provider",
-            "ru.CryptoPro.ssl.android.SSLServerSocketFactoryImpl"
+            "ru.CryptoPro.ssl.SSLServerSocketFactoryImpl"
         )
-        if (Security.getProvider(ru.CryptoPro.ssl.android.Provider.PROVIDER_NAME) == null) {
-            Security.addProvider(ru.CryptoPro.ssl.android.Provider())
+        if (Security.getProvider(ru.CryptoPro.ssl.Provider.PROVIDER_NAME) == null) {
+            Security.addProvider(ru.CryptoPro.ssl.Provider())
         } // if
         //
 // 3. Провайдер хеширования, подписи, шифрования
@@ -95,7 +95,7 @@ class CryptoProApp : Application() {
         System.setProperty("com.sun.security.crl.timeout", "5")
         System.setProperty("ru.CryptoPro.crl.read_timeout", "5")
         // 7. Задание провайдера по умолчанию для CAdES.
-        AdESConfig.setDefaultProvider(JCSP.PROVIDER_NAME)
+        // AdESConfig.setDefaultProvider(JCSP.PROVIDER_NAME)
         // 8. Инициализация XML DSig (хеш, подпись).
         XmlInit.init()
         // Добавление реализации поиска узла по ID.
@@ -141,16 +141,16 @@ class CryptoProApp : Application() {
 // Здесь эти свойства включены, т.к. пример УЦ 1.5 использует алгоритмы
 // по умолчанию. Примеров УЦ 2.0 пока нет.
 //
-        val trustStorePath =
-            applicationInfo.dataDir.toString() + File.separator +
-                    BKSTrustStore.STORAGE_DIRECTORY + File.separator + BKSTrustStore.STORAGE_FILE_TRUST
-        val trustStorePassword = String(BKSTrustStore.STORAGE_PASSWORD)
-        Log.d(
-            Constants.APP_LOGGER_TAG,
-            "Default trust store: $trustStorePath"
-        )
-        System.setProperty("javax.net.ssl.trustStoreType", BKSTrustStore.STORAGE_TYPE)
-        System.setProperty("javax.net.ssl.trustStore", trustStorePath)
-        System.setProperty("javax.net.ssl.trustStorePassword", trustStorePassword)
+//       val trustStorePath =
+//           applicationInfo.dataDir.toString() + File.separator +
+//                   BKSTrustStore.STORAGE_DIRECTORY + File.separator + BKSTrustStore.STORAGE_FILE_TRUST
+//       val trustStorePassword = String(BKSTrustStore.STORAGE_PASSWORD)
+//       Log.d(
+//           Constants.APP_LOGGER_TAG,
+//           "Default trust store: $trustStorePath"
+//       )
+//       System.setProperty("javax.net.ssl.trustStoreType", BKSTrustStore.STORAGE_TYPE)
+//       System.setProperty("javax.net.ssl.trustStore", trustStorePath)
+//       System.setProperty("javax.net.ssl.trustStorePassword", trustStorePassword)
     }
 }

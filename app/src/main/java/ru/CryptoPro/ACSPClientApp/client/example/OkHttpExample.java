@@ -31,6 +31,7 @@ import ru.CryptoPro.ACSPClientApp.client.example.base.TLSData;
 import ru.CryptoPro.ACSPClientApp.client.example.interfaces.ThreadExecuted;
 import ru.CryptoPro.ACSPClientApp.util.ContainerAdapter;
 import ru.CryptoPro.ACSPClientApp.util.Logger;
+import timber.log.Timber;
 
 /**
  * Класс OkHttpExample реализует пример обмена
@@ -92,6 +93,7 @@ public class OkHttpExample extends TLSData {
 
             ConnectionSpec spec = new ConnectionSpec.Builder(
                 ConnectionSpec.MODERN_TLS)
+                .tlsVersions("TLSv1")
                 .cipherSuites(
                     "TLS_CIPHER_2012",
                     "TLS_CIPHER_2001")
@@ -115,7 +117,8 @@ public class OkHttpExample extends TLSData {
             Logger.log("Successful: " + response.isSuccessful());
 
             logData(response.body().byteStream());
-            Logger.log("Connection has been established (OK).");
+            // Logger.log("Connection has been established (OK).");
+            Timber.i(">>>>>> OkHttp connection has been established (OK). >>>>>>");
 
         }
 

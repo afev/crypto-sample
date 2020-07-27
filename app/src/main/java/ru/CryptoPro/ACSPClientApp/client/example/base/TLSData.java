@@ -23,8 +23,8 @@ import ru.CryptoPro.ACSPClientApp.util.ContainerAdapter;
 import ru.CryptoPro.ACSPClientApp.util.KeyStoreType;
 import ru.CryptoPro.ACSPClientApp.util.Logger;
 import ru.CryptoPro.JCSP.JCSP;
-import ru.CryptoPro.ssl.android.Provider;
-import ru.CryptoPro.ssl.android.util.TLSContext;
+import ru.CryptoPro.ssl.Provider;
+import ru.CryptoPro.ssl.util.TLSContext;
 
 /**
  * Служебный класс TLSData предназначен для

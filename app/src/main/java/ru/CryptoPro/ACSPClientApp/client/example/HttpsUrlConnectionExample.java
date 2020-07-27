@@ -27,6 +27,7 @@ import ru.CryptoPro.ACSPClientApp.client.example.base.TLSData;
 import ru.CryptoPro.ACSPClientApp.client.example.interfaces.ThreadExecuted;
 import ru.CryptoPro.ACSPClientApp.util.ContainerAdapter;
 import ru.CryptoPro.ACSPClientApp.util.Logger;
+import timber.log.Timber;
 
 /**
  * Класс HttpsUrlConnectionExample реализует пример обмена
@@ -93,7 +94,8 @@ public class HttpsUrlConnectionExample extends TLSData {
                 Logger.log("Read input stream.");
                 logContent(connection);
 
-                Logger.log("Connection has been established (OK).");
+                // Logger.log("Connection has been established (OK).");
+                Timber.i(">>>>>> Connection has been established (OK). >>>>>>");
 
             } finally {
 
