@@ -2,6 +2,7 @@ package com.ncloudtech.crypto
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import ru.CryptoPro.ACSPClientApp.client.example.HttpsUrlConnectionExample
@@ -33,6 +34,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun runExample() {
+
+        val textView = findViewById<TextView>(R.id.textView);
+
+        // В примере используется cpca.cryptopro.ru (RemoteConnectionInfo.test),
+        // на всякий случай происходит попытка добавить в список доверенных
+        // корневой сертификат цепочки сервера, если его там нет.
 
         val trusted_root_for_cpca =
             "MIIDhzCCAvOgAwIBAgIRAnioGgH3qu28QYxppLJocdYwCgYIKoUDBwEBAwMwgbcx" +
@@ -89,13 +96,19 @@ class MainActivity : AppCompatActivity() {
 
         try {
 
-
-//            HttpsUrlConnectionSimpleExample(adapter).getResult {
+            // HttpsUrlConnectionSimpleExample(adapter).getResult {
             OkHttpSimpleExample(adapter).getResult {
                 println("Finished")
+                runOnUiThread(Runnable {
+                    textView.text = "Finished";
+                })
             }
+
         } catch (e: Exception) {
             Timber.e(e)
+            runOnUiThread(Runnable {
+                textView.text = "Failed";
+            })
         }
     }
 }

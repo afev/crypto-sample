@@ -93,7 +93,7 @@ public class OkHttpExample extends TLSData {
 
             ConnectionSpec spec = new ConnectionSpec.Builder(
                 ConnectionSpec.MODERN_TLS)
-                .tlsVersions("TLSv1")
+                .tlsVersions("TLSv1.2", "TLSv1.1", "TLSv1")
                 .cipherSuites(
                     "TLS_CIPHER_2012",
                     "TLS_CIPHER_2001")

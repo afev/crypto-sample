@@ -191,7 +191,7 @@ public abstract class TLSData extends EncryptDecryptData {
 
             sslCtx = TLSContext.initAuthClientSSL(
                 Provider.PROVIDER_NAME, // провайдер, по умолчанию - JTLS
-                null,                   // протокол, по умолчанию - GostTLS
+                "TLSv1.2",              // протокол, по умолчанию - GostTLS
                 JCSP.PROVIDER_NAME,
                 keyStoreType,
                 containerAdapter.getClientAlias(), // точный алиас ключа
@@ -207,7 +207,7 @@ public abstract class TLSData extends EncryptDecryptData {
 
             sslCtx = TLSContext.initClientSSL(
                 Provider.PROVIDER_NAME, // провайдер, по умолчанию - JTLS
-                null,                   // протокол, по умолчанию - GostTLS
+                "TLSv1.2",              // протокол, по умолчанию - GostTLS
                 containerAdapter.getTrustStoreProvider(),
                 containerAdapter.getTrustStoreType(),
                 containerAdapter.getTrustStoreStream(),
